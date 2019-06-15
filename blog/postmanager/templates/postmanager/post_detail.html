@@ -1,0 +1,15 @@
+{% extends 'postmanager/base.html' %}
+
+{% block content %}
+
+<p>{{ post.author }}</p>
+<p>{{ post.category }}</p>
+<p>{{ post.title }}</p>
+<p>{{ post.content }}</p>
+<p>{{ post.created_on }}</p>
+
+	{% for image in post_images %}
+		<p><img src="{{ image.post_image.url }}", style="width: 700px; height: 400px" /></p>
+	{% endfor %}
+
+{% endblock %}

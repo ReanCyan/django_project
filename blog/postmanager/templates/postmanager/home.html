@@ -1,0 +1,46 @@
+{% extends 'postmanager/base.html' %}
+
+{% block content %}
+  <div class="carousel carousel-slider">
+    <a class="carousel-item" style="width:50%" href="#one!">
+    	<img src="https://lorempixel.com/800/400/food/1" />
+    </a>
+    <a class="carousel-item" style="width:50%" href="#two!">
+    	<img src="https://lorempixel.com/800/400/food/2" />
+    </a>
+    <a class="carousel-item" style="width:50%" href="#three!">
+    	<img src="https://lorempixel.com/800/400/food/3" />
+    </a>
+    <a class="carousel-item" style="width:50%" href="#four!">
+    	<img src="https://lorempixel.com/800/400/food/4" />
+    </a>
+  </div>
+<div class="container">
+	<div class="row">
+		{% for post in public_posts%}
+			<div class="col s12 m6 l4">
+				<div class="card">
+					<div class="card-image">
+						{% for image in thumbnail_images.items %}
+							{% if image.0 == post %}
+								<img src="/media/{{ image.1 }}" style="width: 292.72px; height: 200px">
+							{% endif %}
+						{% endfor %}
+						<span class="card-title">{{ post.title }}</span>
+						<a class="btn-floating halfway-fab waves-effect waves-light pink"><i class="material-icons">favorite</i></a>
+					</div>
+					<div class="card-content">
+						 <p class="row">
+							<span class="left">By, <a href="">{{ post.author }}</a></span>
+							<span class="right">on {{ post.created_on|date }}</span>
+						</p>
+						<br>
+						<p>{{ post.content|truncatewords:22|safe }}</p>
+						<p><a href="../{{ post.post_slug }}"style="line-height:24px">Read More<i class="material-icons" style="display: inline-flex; vertical-align: top;">arrow_forward</i></a></p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

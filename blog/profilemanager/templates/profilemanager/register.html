@@ -1,0 +1,101 @@
+{% extends 'profilemanager/base.html' %}
+
+{% block content %}
+<div class="section">
+	<div class="row">
+		<div class="col s12 m8 l6 push-l3 push-m2">
+			<div class="card-panel">
+			<h4 class="header center-align"><i class="material-icons" style="font-size:45px">beach_access</i> Join Us</h4>
+				<div class="row">
+					<form class="col s12" method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="row">
+							<div class="input-field col s6">
+				    			{{ user_form.firstname }}
+				    			{{ user_form.firstname.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.firstname.errors }}</span>
+				  			</div>
+				  			<div class="input-field col s6">
+				    			{{ user_form.lastname }}
+				    			{{ user_form.lastname.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.lastname.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="col s4">
+								Gender :
+							</div>
+				  			<div class="col s4 pull-s2">
+								<label>
+									<input class="with-gap" name="gender" type="radio" value="M" checked />
+									<span>Male</span>
+								</label>
+							</div>
+							<div class="col s4 pull-s4">
+								<label>
+									<input class="with-gap" name="gender" type="radio" value="F"  />
+									<span>Female</span>
+								</label>
+							</div>
+							<span class="red-text text-darken-2">{{ profile_form.gender.errors }}</span>
+						</div>
+						<div class="row">
+				  			<div class="input-field col s12">
+				    			{{ user_form.username }}
+				    			{{ user_form.username.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.username.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+				  			<div class="input-field col s12">
+				    			{{ user_form.email }}
+				    			{{ user_form.email.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.email.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ user_form.password1 }}
+				    			{{ user_form.password1.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.password1.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ user_form.password2 }}
+				    			{{ user_form.password2.label_tag }}
+				    			<span class="red-text text-darken-2">{{ user_form.password2.errors }}</span>
+				  			</div>
+						</div>
+						<div class="file-field input-field">
+							<div class="btn indigo lighten-1">
+								<i class="material-icons right">add_a_photo</i>
+								<span>Upload Avatar</span>
+								<input type="file" name= "{{ profile_form.avatar.name }}" accept="image/*" id ="{{ profile_form.avatar.id_for_label }}">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+							<span class="red-text text-darken-2">{{ profile_form.avatar.errors }}</span>
+						</div>
+						<div class="row">
+				  			<div class="input-field col s12">
+				    			<textarea name="{{ profile_form.bio.name }}"  id="{{ profile_form.bio.id_for_label }}" class="materialize-textarea" maxlength="500"></textarea>
+				    			{{ profile_form.bio.label_tag }}
+				  			</div>
+				  			<span class="red-text text-darken-2">{{ profile_form.bio.errors }}</span>
+				  		</div>
+				  		<div class="row">
+				    		<div class="col s12">
+				      			<button class="btn indigo lighten-1 waves-effect waves-light right" type="submit" name="action"><i class="material-icons right">send</i>Submit
+				      			</button>
+				    		</div>
+				  		</div>
+				  		Already have an account? <a href="{% url 'profilemanager:user_login' %}"><strong>LogIn Here</strong>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

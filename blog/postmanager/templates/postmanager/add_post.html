@@ -1,0 +1,85 @@
+{% extends 'postmanager/base.html' %}
+
+{% block content %}
+<div class="section">
+	<div class="row">
+		<div class="col s12 m8 l6 push-l3 push-m2">
+			<div class="card-panel">
+				<h4 class="header center-align"><i class="material-icons" style="font-size:45px">beach_access</i>Create Post</h4>
+				<div class="row">
+					<form class= "col s12" method = "POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ form.category }}
+				    			{{ form.category.label_tag }}
+				    			<span class="red-text text-darken-2">{{ form.category.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ form.title }}
+				    			{{ form.title.label_tag }}
+				    			<span class="red-text text-darken-2">{{ form.title.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			<textarea name="{{ form.content.name }}"  id="{{ form.content.id_for_label }}" class="materialize-textarea"></textarea>
+				    			{{ form.content.label_tag }}
+				    			<span class="red-text text-darken-2">{{ form.content.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ form.tags }}
+				    			{{ form.tags.label_tag }}
+				    			<span class="red-text text-darken-2">{{ form.tags.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+				    			{{ form.post_slug }}
+				    			{{ form.post_slug.label_tag }}
+				    			<span class="red-text text-darken-2">{{ form.post_slug.errors }}</span>
+				  			</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<p>
+									<label>
+										<input type="checkbox" class="filled-in" name="{{ form.public_visible.name }}" id ="{{ form.public_visible.id_for_label }}" checked="checked" /> 
+										<span>{{ form.public_visible.label }}</span>
+									</label>
+								</p>
+							</div>
+						</div>
+						{{ formset.management_form }}
+						{% for form in formset %}
+							<div class="file-field input-field">
+								<div class="btn indigo lighten-1">
+									<i class="material-icons right">add_a_photo</i>
+									<span>{{ form.post_image.label }}</span>
+									<input type="file" name= "{{ form.prefix }}-{{ form.post_image.name }}" accept="image/*" id ="{{ form.post_image.id_for_label }}">
+									{% for hidden in form.hidden_fields %}
+                            			{{ hidden }}
+                        			{% endfor %}
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
+							</div>
+						{% endfor %}
+						<div class="row">
+				    		<div class="col s12">
+								<button class="btn indigo lighten-1 waves-effect waves-light right" type="submit" name="action"><i class="material-icons right">send</i>Post it
+				      			</button>
+				    		</div>
+				  		</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

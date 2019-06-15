@@ -1,0 +1,40 @@
+<div class="navbar-fixed" style="opacity: 0.85">  
+  <nav>
+    <div class="nav-wrapper indigo lighten-1">
+      <a href="{% url 'postmanager:home' %}" class="brand-logo"><i class="material-icons" style="font-size:45px">beach_access</i>Blog</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </li>
+        <li><a href="{% url 'postmanager:home' %}">Home</a></li>
+        <li><a class="dropdown-trigger" href="" data-target="Categoriesdropdown">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li>
+          <a class="dropdown-trigger" href="" data-target="Profiledropdown"><img class="circle responsive-img right" src="/media/none/default.png" style= "padding:10px; width:60px; height: 60px;"/>{{ request.user }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<!-- Dropdown Menus -->
+<ul id="Profiledropdown" class="dropdown-content">
+  <li><a class="grey-text text-darken-3" href="#!">Profile</a></li>
+  <li class="divider"></li>
+  <li><a class="grey-text text-darken-3" href="{% url 'postmanager:add_post' %}">Add Posts</a></li>
+  <li class="divider"></li>
+  <li><a class="grey-text text-darken-3" href="{% url 'profilemanager:user_logout' %}">Logout</a></li>
+</ul>
+
+<ul id="Categoriesdropdown" class="dropdown-content">
+  <li><a class="grey-text text-darken-3" href="#!">One</a></li>
+  <li class="divider"></li>
+  <li><a class="grey-text text-darken-3" href="#!">Two</a></li>
+  <li class="divider"></li>
+  <li><a class="grey-text text-darken-3" href="#!">Three</a></li>
+</ul>
+<!-- End -->
